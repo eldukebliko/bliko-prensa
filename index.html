@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BLIKO — kit de prensa</title>
+<meta name="description" content="BLIKO, artista urbano de Barcelona. Trap, reggaetón y rap. Bio, fotos de prensa, estrenos y contacto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&family=Big+Shoulders+Display:wght@800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sala:#1233B8; --noche:#0A1A5C; --hielo:#E3E9FF; --rojo:#E22328; --blanco:#FFFFFF;
+    --cartel:"Big Shoulders Display", "Avenir Next Condensed", "Arial Narrow", sans-serif;
+    --texto:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--noche)}
+  body{font-family:var(--texto);color:var(--noche);background:var(--noche);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  img{display:block;max-width:100%}
+
+  .page{position:relative;overflow:hidden;margin:0 auto;max-width:1100px}
+
+  /* ---------- PORTADA ---------- */
+  .portada{background:var(--sala);color:var(--blanco);display:grid;grid-template-columns:1.05fr .95fr;min-height:100vh}
+  .portada .izq{padding:56px 48px 40px;display:flex;flex-direction:column;gap:28px;position:relative;z-index:2}
+  .logo{width:min(420px,100%);filter:drop-shadow(0 0 18px rgba(255,255,255,.35))}
+  .kicker{font-family:var(--cartel);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:15px;opacity:.85}
+  .generos{font-family:var(--cartel);font-weight:900;text-transform:uppercase;font-size:clamp(46px,7vw,84px);line-height:.88;letter-spacing:.01em}
+  .generos span{display:block}
+  .generos span:nth-child(2){color:var(--rojo)}
+  .bio-corta{font-size:17px;line-height:1.55;max-width:34ch}
+  .portada .pie{margin-top:auto;font-size:13px;letter-spacing:.04em;display:flex;flex-wrap:wrap;gap:6px 18px;opacity:.9}
+  .portada .der{position:relative;min-height:420px}
+  .portada .der img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+  .portada .der::before{content:"";position:absolute;inset:0 auto 0 0;width:10px;background:var(--rojo);z-index:1}
+
+  /* ---------- LECTURA ---------- */
+  .lectura{background:var(--hielo);padding:56px 48px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px}
+  h2{font-family:var(--cartel);font-weight:900;text-transform:uppercase;font-size:44px;line-height:.9;color:var(--sala);margin-bottom:22px;letter-spacing:.01em}
+  h2 em{font-style:normal;color:var(--rojo)}
+  .bio-larga p{font-size:16px;line-height:1.62;margin-bottom:14px}
+  .bio-larga p:first-of-type::first-line{font-weight:600}
+  .lectura figure{margin:0}
+  .lectura .apilado{display:grid;gap:14px;align-content:start}
+  .lectura .apilado img{width:100%;object-fit:cover;border:6px solid var(--blanco)}
+  .lectura .apilado .ancha{aspect-ratio:3/2}
+  .lectura .apilado .alta{aspect-ratio:4/5;object-position:50% 25%}
+  .lectura .banda{grid-column:1/-1;margin:0}
+  .lectura .banda img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:50% 35%;border:6px solid var(--blanco)}
+  figcaption{font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-top:6px;color:var(--sala)}
+
+  /* ---------- AHORA ---------- */
+  .ahora{background:var(--sala);color:var(--blanco);padding:48px 48px 40px}
+  .ahora h2{color:var(--blanco)}
+  .estreno{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;margin-bottom:34px}
+  .estreno img{width:100%;filter:drop-shadow(0 0 16px rgba(226,35,40,.55))}
+  .estreno .dato{font-family:var(--cartel);font-weight:800;text-transform:uppercase;font-size:28px;line-height:1.05}
+  .estreno .dato small{display:block;font-family:var(--texto);font-weight:400;text-transform:none;font-size:15px;margin-top:10px;opacity:.9}
+  .estreno .dato a{font-family:var(--texto);font-weight:600;font-size:15px;text-transform:none;display:inline-block;margin-top:12px;border-bottom:2px solid var(--rojo);text-decoration:none}
+
+  /* firma: la taquilla */
+  .taquilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-bottom:12px}
+  .entrada{display:grid;grid-template-columns:62px 1fr;background:var(--hielo);color:var(--noche);min-height:66px;position:relative}
+  .entrada .talon{background:var(--rojo);color:var(--blanco);font-family:var(--cartel);font-weight:900;text-align:center;
+    display:flex;flex-direction:column;justify-content:center;line-height:.9;font-size:30px;
+    border-right:3px dotted var(--hielo)}
+  .entrada .talon small{font-size:12px;letter-spacing:.12em;font-weight:800}
+  .entrada .cuerpo{padding:8px 12px;display:flex;flex-direction:column;justify-content:center}
+  .entrada .cuerpo b{font-family:var(--cartel);font-weight:900;text-transform:uppercase;font-size:20px;line-height:1}
+  .entrada .cuerpo span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-top:3px;color:var(--sala)}
+  .entrada::before,.entrada::after{content:"";position:absolute;left:55px;width:14px;height:14px;border-radius:50%;background:var(--sala)}
+  .entrada::before{top:-7px}.entrada::after{bottom:-7px}
+  .nota{font-size:13px;opacity:.9;margin-bottom:36px}
+
+  .fotos{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
+  .fotos figure{margin:0}
+  .fotos img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%}
+  .fotos figcaption{color:var(--blanco);opacity:.85}
+  .fotos-nota{font-size:13px;opacity:.9;margin-bottom:36px}
+
+  .cierre{display:grid;grid-template-columns:1fr 1fr;gap:28px;border-top:2px solid rgba(255,255,255,.35);padding-top:24px}
+  .cierre h3{font-family:var(--cartel);font-weight:900;text-transform:uppercase;font-size:24px;margin-bottom:10px}
+  .cierre ul{list-style:none;font-size:15px;line-height:1.75}
+  .cierre li b{display:inline-block;min-width:88px;font-weight:600}
+  .cierre p{font-size:15px;line-height:1.6}
+  .cierre .mail{font-family:var(--cartel);font-weight:800;font-size:24px;text-decoration:none;border-bottom:3px solid var(--rojo)}
+
+  @media screen and (max-width:760px){
+    .portada,.lectura,.estreno,.cierre{grid-template-columns:1fr}
+    .portada .izq,.lectura,.ahora{padding:36px 16px}
+    .portada .der{min-height:120vw}
+    .fotos{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* ---------- PDF A4 ---------- */
+  @page{size:A4;margin:0}
+  @media print{
+    html,body{background:none}
+    .page{max-width:none;width:210mm;height:297mm;page-break-after:always;break-after:page}
+    .page:last-child{page-break-after:auto;break-after:auto}
+    .portada{min-height:0}
+    .portada .izq{padding:16mm 12mm 12mm}
+    .generos{font-size:64px}
+    .lectura{padding:16mm 12mm}
+    .ahora{padding:13mm 12mm 10mm}
+    .estreno{margin-bottom:8mm}
+    .taquilla{grid-template-columns:repeat(3,1fr);gap:9px}
+    .entrada{min-height:56px}
+    .nota{margin-bottom:7mm}
+    .fotos{margin-bottom:3mm}
+    .fotos-nota{margin-bottom:7mm}
+    .portada{grid-template-columns:1.05fr .95fr}
+    .lectura{grid-template-columns:1.3fr .7fr;gap:8mm;align-content:start}
+    .lectura .banda img{aspect-ratio:3/2}
+    .bio-larga p{font-size:14.5px}
+    .estreno{grid-template-columns:1.15fr .85fr;gap:6mm}
+    .estreno .dato{font-size:24px}
+    .fotos{grid-template-columns:repeat(4,1fr)}
+    .fotos img{aspect-ratio:3/4}
+    .cierre{grid-template-columns:1.1fr .9fr;padding-top:5mm}
+    .cierre ul,.cierre p{font-size:13px}
+    .cierre .mail{font-size:19px}
+    .ahora h2{margin-bottom:4mm}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+
+<section class="page portada">
+  <div class="izq">
+    <img class="logo" src="img/bliko_logo.png" alt="BLIKO">
+    <div class="kicker">Artista urbano · Barcelona</div>
+    <div class="generos"><span>Trap</span><span>Reggaetón</span><span>Rap</span></div>
+    <p class="bio-corta">BLIKO es Pablo Alonso, artista urbano de Barcelona. Viene del freestyle, se formó en producción e ingeniería de estudio y publica su música desde 2019, moviéndose entre el trap, el reggaetón y el rap. Este otoño estrena un visualizer cada martes y cada viernes, empezando por «Latina».</p>
+    <div class="pie"><span>Kit de prensa</span><span>pabloalonsoaznar99@gmail.com</span><span>@bliko____</span></div>
+  </div>
+  <div class="der"><img src="img/01_BLIKO_retrato_vertical_gorra.jpg" alt="Retrato de BLIKO con gorra"></div>
+</section>
+
+<section class="page lectura">
+  <div class="bio-larga">
+    <h2>Quién es <em>BLIKO</em></h2>
+    <p>BLIKO es Pablo Alonso, artista urbano de Barcelona. Empezó en el freestyle: compitió por Cataluña entre 2016 y 2022 y organizó eventos como Full Rap Sitges y FMS Aso para que otros pudieran rapear.</p>
+    <p>Se formó en producción e ingeniería con Ale Ortiz y ha pasado por Angel Sound Studio y Artspace Barcelona. Como ingeniero de grabación ha estado en sesiones de artistas como Omar Montes, RVFV, Chimbala, Moonkey, Josele Junior, 3dnan, BadMakers, Moha the B, Sneak Boo o Cecilio G. Además, ha estado en el equipo técnico de conciertos de las giras de Duki.</p>
+    <p>Publica desde marzo de 2019 y no se queda en un solo carril: trap, reggaetón, rap, garage, afrobeats y tech house, siempre firmado como BLIKO. Sus últimos temas llevan la producción de Phonkid Prod, Gian Beats, Simano, Diamond Style y Carlos Ruiz.</p>
+    <p>Este otoño saca a la luz un visualizer cada martes y cada viernes. Abre «Latina», un reggaetón, el viernes 23 de octubre.</p>
+  </div>
+  <div class="apilado">
+    <figure><img class="alta" src="img/04_BLIKO_estudio_cascos.jpg" alt="BLIKO en el estudio"><figcaption>En el estudio</figcaption></figure>
+  </div>
+  <figure class="banda"><img src="img/02_BLIKO_horizontal_directo_azul.jpg" alt="BLIKO en directo"><figcaption>En directo</figcaption></figure>
+</section>
+
+<section class="page ahora">
+  <h2>Ahora</h2>
+  <div class="estreno">
+    <img src="img/latina_titulo.png" alt="Latina">
+    <div class="dato">Visualizer<br>viernes 23 de octubre<br>18:00
+      <small>Un reggaetón. Estreno en YouTube.</small>
+      <a href="https://youtu.be/URiSKPv1zG8">youtu.be/URiSKPv1zG8</a>
+    </div>
+  </div>
+
+  <div class="taquilla">
+    <div class="entrada"><div class="talon">23<small>OCT</small></div><div class="cuerpo"><b>Latina</b><span>vie · 18:00</span></div></div>
+    <div class="entrada"><div class="talon">27<small>OCT</small></div><div class="cuerpo"><b>Adidhash</b><span>mar · 18:00</span></div></div>
+    <div class="entrada"><div class="talon">30<small>OCT</small></div><div class="cuerpo"><b>Si estás dispuesta</b><span>vie · 18:00</span></div></div>
+    <div class="entrada"><div class="talon">3<small>NOV</small></div><div class="cuerpo"><b>Hazme Volar</b><span>mar · 18:00</span></div></div>
+    <div class="entrada"><div class="talon">10<small>NOV</small></div><div class="cuerpo"><b>The Ring Tech</b><span>mar · 18:00</span></div></div>
+    <div class="entrada"><div class="talon">13<small>NOV</small></div><div class="cuerpo"><b>Party</b><span>vie · 18:00</span></div></div>
+    <div class="entrada"><div class="talon">17<small>NOV</small></div><div class="cuerpo"><b>Hecho Pa Ti</b><span>mar · 18:00</span></div></div>
+    <div class="entrada"><div class="talon">20<small>NOV</small></div><div class="cuerpo"><b>Duro</b><span>vie · 18:00</span></div></div>
+    <div class="entrada"><div class="talon">24<small>NOV</small></div><div class="cuerpo"><b>Voyage</b><span>mar · 18:00</span></div></div>
+    <div class="entrada"><div class="talon">27<small>NOV</small></div><div class="cuerpo"><b>No me llamas</b><span>vie · 18:00</span></div></div>
+  </div>
+  <p class="nota">Un visualizer cada martes y viernes a las 18:00 en YouTube. Audio en WAV o MP3 para radio, a quien lo pida.</p>
+
+  <div class="fotos">
+    <figure><img src="img/01_BLIKO_retrato_vertical_gorra.jpg" alt=""><figcaption>Retrato principal</figcaption></figure>
+    <figure><img src="img/03_BLIKO_directo_brazos.jpg" alt=""><figcaption>En directo</figcaption></figure>
+    <figure><img src="img/04_BLIKO_estudio_cascos.jpg" alt=""><figcaption>En el estudio</figcaption></figure>
+    <figure><img src="img/07_BLIKO_set_rosa.jpg" alt=""><figcaption>Galería</figcaption></figure>
+  </div>
+  <p class="fotos-nota">Fotos de prensa en alta resolución, de uso libre en piezas sobre BLIKO: <a href="https://drive.google.com/drive/folders/1c7ixv9WvynmdNwa_1vF0WF-ORS2NfhEx">descargar fotos</a> · <a href="https://drive.google.com/file/d/1vcvCcGfn-hflovZTuFHzCu0kCcskx2lt/view">kit en PDF</a>.</p>
+
+  <div class="cierre">
+    <div>
+      <h3>Escuchar y seguir</h3>
+      <ul>
+        <li><b>Spotify</b> <a href="https://open.spotify.com/artist/0IJShcOSruQSxNdlEugbPu">BLIKO en Spotify</a></li>
+        <li><b>YouTube</b> <a href="https://www.youtube.com/@Bliko">youtube.com/@Bliko</a></li>
+        <li><b>Instagram</b> <a href="https://www.instagram.com/bliko____">@bliko____</a></li>
+        <li><b>TikTok</b> <a href="https://www.tiktok.com/@blikodelagente">@blikodelagente</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contacto</h3>
+      <p><a class="mail" href="mailto:pabloalonsoaznar99@gmail.com">pabloalonsoaznar99@gmail.com</a></p>
+      <p style="margin-top:12px">Entrevistas en persona en Barcelona, o por teléfono y videollamada.</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
